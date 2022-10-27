@@ -21,6 +21,7 @@ with open('config.json') as config_json:
 fname = config['epo']
 epochs = mne.read_epochs(fname)
 
+
 epochs_auditory = epochs['auditory']
 
 
