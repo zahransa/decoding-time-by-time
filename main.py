@@ -1,5 +1,6 @@
 
 import mne
+import os
 import numpy as np
 from sklearn.pipeline import make_pipeline
 from sklearn.preprocessing import StandardScaler
@@ -53,6 +54,17 @@ print(f'\n=> Mean CV score across all time points: {mean_across_all_times:.3f}')
 
 
 
+fig, ax = plt.subplots()
 
+ax.axhline(0.5, color='k', linestyle='--', label='chance')  # AUC = 0.5
+ax.axvline(0, color='k', linestyle='-')  # Mark time point zero.
+ax.plot(epochs.times, mean_scores, label='score')
+
+ax.set_xlabel('Time (s)')
+ax.set_ylabel('Mean ROC AUC')
+ax.legend()
+ax.set_title('Left vs Right')
+fig.suptitle('Sensor Space Decoding')
+fig.savefig(os.path.join('out_figs', 'Sensor-Space-Decoding.png'))
 
 
